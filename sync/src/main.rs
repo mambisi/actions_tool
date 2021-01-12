@@ -14,6 +14,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     env::set_var("RUST_LOG", "info");
 
     tracing_subscriber::fmt::init();
+
     let matches = clap::App::new("Tezedge Action Tool")
         .author("mambisi.zempare@simplestaking.com")
         .arg(Arg::with_name("node")
