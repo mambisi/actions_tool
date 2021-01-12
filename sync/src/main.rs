@@ -7,19 +7,45 @@ use tracing::{info, error, debug, warn, trace};
 use tracing_subscriber;
 use std::path::Path;
 
-use clap::App;
+use clap::{App, Arg};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     env::set_var("RUST_LOG", "info");
 
     tracing_subscriber::fmt::init();
+    let matches = clap::App::new("Tezedge Action Tool")
+        .author("mambisi.zempare@simplestaking.com")
+        .arg(Arg::with_name("node")
+            .short("n")
+            .long("node")
+            .value_name("NODE")
+            .takes_value(true)
+            .default_value("http://127.0.0.1:18732")
+            .help("Node base url")
+        )
+        .arg(Arg::with_name("limit")
+            .short("l")
+            .long("limit")
+            .value_name("LIMIT")
+            .takes_value(true)
+            .default_value("500000")
+            .help("Set the number of block to sync from the current block")
+        )
+        .arg(Arg::with_name("file")
+            .short("f")
+            .long("file")
+            .value_name("FILE")
+            .takes_value(true)
+            .default_value("./actions.bin")
+            .help("output file path")
+        )
+        .get_matches();
 
-    //let matches = App::new("Sync").author("mambisi")
+    let node = matches.value_of("node").unwrap();
+    let block_limit = matches.value_of("limit").unwrap().parse::<u32>().unwrap_or(25000);
+    let file_path = matches.value_of("file").unwrap();
 
-    let block_limit: u32 = 10;
-    let node = "http://master.dev.tezedge.com:18732";
-    let file_path = "./actions.bin";
     start_syncing(node, block_limit, file_path).await?;
     Ok(())
 }
