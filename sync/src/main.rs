@@ -1,4 +1,4 @@
-use common::{ContextActionJson, Block};
+use io::channel::{ContextActionJson, Block};
 use serde_json::Value;
 use io::{ActionsFileWriter, ActionsFileReader};
 use std::env;

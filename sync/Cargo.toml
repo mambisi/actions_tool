@@ -12,7 +12,6 @@ serde_json = "1.0"
 reqwest = { version = "0.10", features = ["json"] }
 tokio = { version = "0.2", features = ["full"] }
 clap = "2.33.3"
-common = { path = "../common" }
 io = { path = "../io" }
 tracing = "0.1"
 tracing-subscriber = "0.2"

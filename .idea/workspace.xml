@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BuildServerSettings">
+    <treeState key="project">
+      <selectedPath>
+        <pathElement>
+          <option name="myNodeId" value="helperText" />
+          <option name="myNodeType" value="jetbrains.buildServer.tree.descriptors.LinkedTextDescriptor" />
+        </pathElement>
+      </selectedPath>
+    </treeState>
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated />
   </component>
@@ -10,9 +20,21 @@
   </component>
   <component name="CargoProjects">
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="Sync Complete">
+      <change afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/actions_tool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/actions_tool.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/channel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/channel.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/lib.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/src/file.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sync/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/sync/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sync/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/sync/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +67,31 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Cargo.Run sync">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/io/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Cargo.Expand io::file [bintool]">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Expand io::file [bintool]" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="expand --lib --color=always --theme=GitHub --tests file" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/io" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Run sync" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="run --package sync --bin sync" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -74,13 +120,9 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo.Expand io::file [bintool]" />
         <item itemvalue="Cargo.Run sync" />
       </list>
     </recent_temporary>
@@ -98,7 +140,8 @@
       <option name="presentableId" value="Default" />
       <updated>1610462988274</updated>
       <workItem from="1610462992517" duration="2823000" />
-      <workItem from="1610467369336" duration="12093000" />
+      <workItem from="1610467369336" duration="12243000" />
+      <workItem from="1610483725399" duration="4878000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -121,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610482841625</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Sync Complete">
+      <created>1610483575886</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610483575886</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

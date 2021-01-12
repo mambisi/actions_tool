@@ -1,2 +1,2 @@
 [workspace]
-members = ["io","common","sync"]
+members = ["io", "sync", "bintool"]

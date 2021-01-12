@@ -1,12 +1,14 @@
 use std::io::{BufWriter, Write, BufReader, Read, Seek, SeekFrom, Error};
 use std::fs::{File, Permissions, OpenOptions};
-use std::path::Path;
+use std::path::{Path};
 use bytes::{BytesMut, Buf, BufMut, Bytes};
 use std::string::FromUtf8Error;
 use anyhow::Result;
 use anyhow::anyhow;
-use common::{Block, ContextAction};
 use bincode::ErrorKind;
+use std::fmt::Display;
+use serde::export::Formatter;
+use crate::channel::{Block, ContextAction};
 
 const HEADER_LEN: usize = 12;
 
@@ -15,6 +17,16 @@ pub struct ActionsFileHeader {
     pub block_height: u32,
     pub actions_count: u32,
     pub block_count: u32,
+}
+
+impl Display for ActionsFileHeader {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut formatter: String = String::new();
+        formatter.push_str( &format!("{:<24}{}\n", "Block Height:",self.block_height));
+        formatter.push_str( &format!("{:<24}{}\n", "Block Count:",self.block_count));
+        formatter.push_str( &format!("{:<24}{}", "Actions Count:",self.actions_count));
+        writeln!(f, "{}", formatter)
+    }
 }
 
 
