@@ -12,22 +12,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/actions_tool.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/channel.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/lib.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/io/src/lib.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sync/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sync/src/main.rs" afterDir="false" />
-    </list>
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="Testing completed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +39,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -110,8 +96,16 @@
       <option name="presentableId" value="Default" />
       <updated>1610462988274</updated>
       <workItem from="1610462992517" duration="2823000" />
-      <workItem from="1610467369336" duration="9831000" />
+      <workItem from="1610467369336" duration="10150000" />
     </task>
+    <task id="LOCAL-00001" summary="Testing completed">
+      <created>1610480540728</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610480540728</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,5 +122,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Testing completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing completed" />
   </component>
 </project>
