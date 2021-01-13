@@ -23,28 +23,27 @@
     <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="benchmark done">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/base58.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/blake2b.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/codec.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/crypto_box.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/database.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/db_iterator.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/hash.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/ivec.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/lib.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/merkle_storage.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/nonce.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle/src/schema.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/actions_tool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/actions_tool.iml" afterDir="false" />
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="validation of actions">
+      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/merkle-storage" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bintool/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/src/file.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/sync/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/Cargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/base58.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/blake2b.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/codec.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/crypto_box.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/database.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/db_iterator.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/hash.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/ivec.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/lib.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/merkle_storage.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/nonce.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/merkle/src/schema.rs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +141,11 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Cargo.Run sync (1)" />
@@ -165,7 +169,7 @@
       <workItem from="1610462992517" duration="2823000" />
       <workItem from="1610467369336" duration="12243000" />
       <workItem from="1610483725399" duration="15136000" />
-      <workItem from="1610533400414" duration="2683000" />
+      <workItem from="1610533400414" duration="4147000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -209,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610499981567</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="validation of actions">
+      <created>1610536110992</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610536110993</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +244,7 @@
     <MESSAGE value="Sync Complete" />
     <MESSAGE value="bintool" />
     <MESSAGE value="benchmark done" />
-    <option name="LAST_COMMIT_MESSAGE" value="benchmark done" />
+    <MESSAGE value="validation of actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="validation of actions" />
   </component>
 </project>

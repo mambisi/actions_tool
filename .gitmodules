@@ -1,0 +1,4 @@
+[submodule "merkle-storage"]
+	path = merkle-storage
+	url = https://github.com/mambisi/merkle-storage-ds.git
+    branch = gc-btree

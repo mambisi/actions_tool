@@ -5,6 +5,7 @@ use jemalloc_ctl::{stats, epoch};
 use io::channel::{Block, ContextAction};
 
 use merkle::prelude::{MerkleStorageStats,MerklePerfStats,MerkleError};
+
 use std::sync::{RwLock, Arc};
 use std::convert::TryInto;
 
