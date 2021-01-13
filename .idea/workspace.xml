@@ -23,27 +23,9 @@
     <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="validation of actions">
-      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/merkle-storage" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="removed merkle&#10;add git module merkle-storage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bintool/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/Cargo.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/base58.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/blake2b.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/codec.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/crypto_box.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/database.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/db_iterator.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/hash.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/ivec.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/lib.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/merkle_storage.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/nonce.rs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle/src/schema.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +151,7 @@
       <workItem from="1610462992517" duration="2823000" />
       <workItem from="1610467369336" duration="12243000" />
       <workItem from="1610483725399" duration="15136000" />
-      <workItem from="1610533400414" duration="4147000" />
+      <workItem from="1610533400414" duration="7846000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -220,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610536110993</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="removed merkle&#10;add git module merkle-storage">
+      <created>1610537993111</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1610537993111</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +234,7 @@
     <MESSAGE value="bintool" />
     <MESSAGE value="benchmark done" />
     <MESSAGE value="validation of actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="validation of actions" />
+    <MESSAGE value="removed merkle&#10;add git module merkle-storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed merkle&#10;add git module merkle-storage" />
   </component>
 </project>
