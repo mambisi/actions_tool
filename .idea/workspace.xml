@@ -23,10 +23,10 @@
     <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="documentation">
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="compression added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bintool/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,7 @@
       <workItem from="1610533400414" duration="8516000" />
       <workItem from="1610543322857" duration="137000" />
       <workItem from="1610543463900" duration="4837000" />
-      <workItem from="1610560722837" duration="2867000" />
+      <workItem from="1610560722837" duration="5316000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -231,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610549868068</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="compression added">
+      <created>1610564314139</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1610564314139</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +265,7 @@
     <MESSAGE value="validation of actions" />
     <MESSAGE value="removed merkle&#10;add git module merkle-storage" />
     <MESSAGE value="documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="documentation" />
+    <MESSAGE value="compression added" />
+    <option name="LAST_COMMIT_MESSAGE" value="compression added" />
   </component>
 </project>

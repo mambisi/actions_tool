@@ -11,6 +11,7 @@ clap = "2.33.3"
 io = { path = "../io" }
 merkle = { path = "../merkle-storage/merkle" }
 flate2 = "1.0.19"
+
 [target.'cfg(not(target_env = "msvc"))'.dependencies]
 jemallocator = "0.3.2"
 jemalloc-ctl = "0.3.3"
