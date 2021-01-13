@@ -6,8 +6,7 @@ use std::string::FromUtf8Error;
 use anyhow::Result;
 use anyhow::anyhow;
 use bincode::ErrorKind;
-use std::fmt::Display;
-use serde::export::Formatter;
+use std::fmt::{Display, Formatter};
 use crate::channel::{Block, ContextAction};
 
 const HEADER_LEN: usize = 12;
