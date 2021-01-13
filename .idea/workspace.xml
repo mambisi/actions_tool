@@ -24,11 +24,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="documentation">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/src/file.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merkle-storage" beforeDir="false" afterPath="$PROJECT_DIR$/merkle-storage" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bintool/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +39,8 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="runtime-compression" />
+        <entry key="$PROJECT_DIR$/merkle-storage" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -132,18 +131,13 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Cargo.Run sync (1)" />
         <item itemvalue="Cargo.Run sync" />
         <item itemvalue="Cargo.Expand io::file [bintool]" />
         <item itemvalue="Cargo.Run sync (1)" />
-        <item itemvalue="Cargo.Expand io::file [bintool]" />
+        <item itemvalue="Cargo.Run sync" />
       </list>
     </recent_temporary>
   </component>
@@ -164,7 +158,8 @@
       <workItem from="1610483725399" duration="15136000" />
       <workItem from="1610533400414" duration="8516000" />
       <workItem from="1610543322857" duration="137000" />
-      <workItem from="1610543463900" duration="4247000" />
+      <workItem from="1610543463900" duration="4837000" />
+      <workItem from="1610560722837" duration="2867000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -229,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610542048449</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="documentation">
+      <created>1610549868068</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1610549868068</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
