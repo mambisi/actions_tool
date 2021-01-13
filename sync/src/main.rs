@@ -14,8 +14,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     env::set_var("RUST_LOG", "info");
 
     tracing_subscriber::fmt::init();
-
-    let matches = clap::App::new("Tezedge Action Tool")
+    let matches = clap::App::new("Tezedge Action Sync Tool")
         .author("mambisi.zempare@simplestaking.com")
         .arg(Arg::with_name("node")
             .short("n")
@@ -43,6 +42,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .get_matches();
 
+
     let node = matches.value_of("node").unwrap();
     let block_limit = matches.value_of("limit").unwrap().parse::<u32>().unwrap_or(25000);
     let file_path = matches.value_of("file").unwrap();
@@ -58,7 +58,7 @@ async fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> 
     info!("Syncing Blocks");
     loop {
         if next_block_id > (limit + current_block_height) {
-            break
+            break;
         }
 
         let blocks_url = format!("{}/dev/chains/main/blocks?limit={}&from_block_id={}", node, 1, next_block_id);

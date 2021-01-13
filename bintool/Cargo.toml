@@ -9,3 +9,8 @@ edition = "2018"
 [dependencies]
 clap = "2.33.3"
 io = { path = "../io" }
+merkle = { path = "../merkle" }
+
+[target.'cfg(not(target_env = "msvc"))'.dependencies]
+jemallocator = "0.3.2"
+jemalloc-ctl = "0.3.3"

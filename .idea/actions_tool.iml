@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/io/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/sync/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/bintool/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/merkle/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

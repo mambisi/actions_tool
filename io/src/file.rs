@@ -62,7 +62,15 @@ impl ActionsFileHeader {
         }
     }
 }
-
+/// # ActionFileReader
+/// Reads actions binary file in `path`
+/// ## Examples
+/// ```
+/// use io::ActionsFileReader;
+///
+/// let reader = ActionsFileReader::new("./actions.bin").unwrap();
+/// println!("{}", reader.header());
+/// ```
 
 pub struct ActionsFileReader {
     header: ActionsFileHeader,
@@ -72,6 +80,7 @@ pub struct ActionsFileReader {
 
 
 impl ActionsFileReader {
+
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
         let mut file = OpenOptions::new().write(false).create(false).read(true).open(path)?;
         let mut reader = BufReader::new(file);
@@ -86,6 +95,7 @@ impl ActionsFileReader {
         })
     }
 
+    /// Prints header `ActionsFileHeader`
     pub fn header(&self) -> ActionsFileHeader {
         self.header
     }
@@ -102,6 +112,7 @@ impl ActionsFileReader {
 impl Iterator for ActionsFileReader {
     type Item = (Block, Vec<ContextAction>);
 
+    /// Return a tuple of a block and list action in the block
     fn next(&mut self) -> Option<Self::Item> {
         self.cursor = match self.reader.seek(SeekFrom::Start(self.cursor)) {
             Ok(c) => {
@@ -133,6 +144,9 @@ impl Iterator for ActionsFileReader {
     }
 }
 
+/// # ActionFileWriter
+///
+/// writes block and list actions to file in `path`
 pub struct ActionsFileWriter {
     header: ActionsFileHeader,
     file: File,
@@ -162,6 +176,7 @@ impl ActionsFileWriter {
 unsafe impl Send for ActionsFileWriter {}
 
 unsafe impl Sync for ActionsFileWriter {}
+
 
 impl ActionsFileWriter {
     pub fn update(&mut self, block: Block, actions: Vec<ContextAction>) -> Result<u32> {
