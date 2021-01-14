@@ -23,12 +23,9 @@
     <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="add snap to io">
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="replaced `reqwest` with `ureq`&#10;runtime compression with flate">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/io/src/file.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/sync/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/sync/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +38,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="flate-runtime-compression" />
         <entry key="$PROJECT_DIR$/merkle-storage" value="master" />
       </map>
     </option>
@@ -166,7 +163,7 @@
       <workItem from="1610533400414" duration="8516000" />
       <workItem from="1610543322857" duration="137000" />
       <workItem from="1610543463900" duration="4837000" />
-      <workItem from="1610560722837" duration="14607000" />
+      <workItem from="1610560722837" duration="15749000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -252,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610573565303</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="replaced `reqwest` with `ureq`&#10;runtime compression with flate">
+      <created>1610586877244</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1610586877244</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,6 +285,7 @@
     <MESSAGE value="documentation" />
     <MESSAGE value="compression added" />
     <MESSAGE value="add snap to io" />
-    <option name="LAST_COMMIT_MESSAGE" value="add snap to io" />
+    <MESSAGE value="replaced `reqwest` with `ureq`&#10;runtime compression with flate" />
+    <option name="LAST_COMMIT_MESSAGE" value="replaced `reqwest` with `ureq`&#10;runtime compression with flate" />
   </component>
 </project>

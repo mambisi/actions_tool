@@ -135,7 +135,7 @@ impl Iterator for ActionsFileReader {
         unsafe { b.set_len(content_len as usize) }
         self.reader.read_exact(&mut b);
 
-        let mut reader = DeflateDecoder::new(b.reader());
+        let mut reader = snap::read::FrameDecoder::new(b.reader());
 
         let item = match bincode::deserialize_from::<_,(Block, Vec<ContextAction>)>(reader) {
             Ok(item) => {
@@ -196,7 +196,7 @@ impl ActionsFileWriter {
         }
 
         let mut out = Vec::new();
-        let mut writer = DeflateEncoder::new(&mut out, Compression::fast());
+        let mut writer = snap::write::FrameEncoder::new(&mut out);
         bincode::serialize_into(writer, &(block, actions))?;
 
         // Writes the header if its not already set
