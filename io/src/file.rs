@@ -163,7 +163,7 @@ pub struct ActionsFileWriter {
 impl ActionsFileWriter {
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
         let mut file = OpenOptions::new().write(true).create(true).read(true).open(path)?;
-        let file_lock = file.try_exclusive_lock()
+        let file_lock = file.wait_exclusive_lock()
             .or_else(|e|
                 { Err(anyhow!("couldn't obtain lock")) }
             )?;
@@ -199,6 +199,9 @@ impl ActionsFileWriter {
 
         if block.block_level <= self.header.block_height && self.header.block_count > 0 {
             return Err(anyhow!("Block already stored"));
+        }
+        if block_level > 0 && self.header.block_height + 1 != block_level {
+            return Err(anyhow!("Block level is greater than N + 1, where N is the current height"));
         }
 
         let mut out = Vec::new();
