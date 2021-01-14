@@ -8,6 +8,10 @@ use anyhow::anyhow;
 use bincode::ErrorKind;
 use std::fmt::{Display, Formatter};
 use crate::channel::{Block, ContextAction};
+use flate2::read::DeflateDecoder;
+use flate2::write::DeflateEncoder;
+use flate2::Compression;
+use bytes::buf::Reader;
 
 const HEADER_LEN: usize = 12;
 
@@ -21,9 +25,9 @@ pub struct ActionsFileHeader {
 impl Display for ActionsFileHeader {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut formatter: String = String::new();
-        formatter.push_str( &format!("{:<24}{}\n", "Block Height:",self.block_height));
-        formatter.push_str( &format!("{:<24}{}\n", "Block Count:",self.block_count));
-        formatter.push_str( &format!("{:<24}{}", "Actions Count:",self.actions_count));
+        formatter.push_str(&format!("{:<24}{}\n", "Block Height:", self.block_height));
+        formatter.push_str(&format!("{:<24}{}\n", "Block Count:", self.block_count));
+        formatter.push_str(&format!("{:<24}{}", "Actions Count:", self.actions_count));
         writeln!(f, "{}", formatter)
     }
 }
@@ -61,6 +65,7 @@ impl ActionsFileHeader {
         }
     }
 }
+
 /// # ActionFileReader
 /// Reads actions binary file in `path`
 /// ## Examples
@@ -79,7 +84,6 @@ pub struct ActionsFileReader {
 
 
 impl ActionsFileReader {
-
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
         let mut file = OpenOptions::new().write(false).create(false).read(true).open(path)?;
         let mut reader = BufReader::new(file);
@@ -130,7 +134,10 @@ impl Iterator for ActionsFileReader {
         let mut b = BytesMut::with_capacity(content_len as usize);
         unsafe { b.set_len(content_len as usize) }
         self.reader.read_exact(&mut b);
-        let item = match bincode::deserialize::<(Block, Vec<ContextAction>)>(&b) {
+
+        let mut reader = DeflateDecoder::new(b.reader());
+
+        let item = match bincode::deserialize_from::<_,(Block, Vec<ContextAction>)>(reader) {
             Ok(item) => {
                 item
             }
@@ -188,14 +195,17 @@ impl ActionsFileWriter {
             return Err(anyhow!("Block already stored"));
         }
 
-        let msg = bincode::serialize(&(block, actions))?;
+        let mut out = Vec::new();
+        let mut writer = DeflateEncoder::new(&mut out, Compression::fast());
+        bincode::serialize_into(writer, &(block, actions))?;
+
         // Writes the header if its not already set
         if self.header.block_count <= 0 {
             let header_bytes = self.header.to_vec();
             self.file.seek(SeekFrom::Start(0));
             self.file.write(&header_bytes);
         }
-        self._update(&msg);
+        self._update(&out);
         self._update_header(block_level, actions_count);
         Ok((block_level + 1))
     }
