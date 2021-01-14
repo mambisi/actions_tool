@@ -9,8 +9,7 @@ use std::path::Path;
 
 use clap::{App, Arg};
 
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     env::set_var("RUST_LOG", "info");
 
     tracing_subscriber::fmt::init();
@@ -47,11 +46,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let block_limit = matches.value_of("limit").unwrap().parse::<u32>().unwrap_or(25000);
     let file_path = matches.value_of("file").unwrap();
 
-    start_syncing(node, block_limit, file_path).await?;
-    Ok(())
+    start_syncing(node, block_limit, file_path)
 }
 
-async fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> Result<(), Box<dyn std::error::Error>> {
+fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> Result<(), Box<dyn std::error::Error>> {
     let mut writer = ActionsFileWriter::new(file_path).unwrap();
     let current_block_height = writer.header().block_height;
     let mut next_block_id = if current_block_height == 0 { 0 } else { current_block_height + 1 };
@@ -62,10 +60,7 @@ async fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> 
         }
 
         let blocks_url = format!("{}/dev/chains/main/blocks?limit={}&from_block_id={}", node, 1, next_block_id);
-        let mut blocks = reqwest::get(&blocks_url)
-            .await?
-            .json::<Vec<Value>>()
-            .await?;
+        let mut blocks : Vec<Value> = ureq::get(&blocks_url).call()?.into_json()?;
 
         let block = blocks.first().unwrap().as_object().unwrap();
         let block_hash = block.get("hash").unwrap().as_str();
@@ -78,10 +73,7 @@ async fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> 
         let block = Block::new(block_level as u32, block_hash.to_string());
 
 
-        let mut messages = reqwest::get(&actions_url)
-            .await?
-            .json::<Vec<ContextActionJson>>()
-            .await?;
+        let mut messages : Vec<ContextActionJson>= ureq::get(&actions_url).call()?.into_json()?;
 
         let actions: Vec<_> = messages.iter().map(|action_json| {
             action_json.clone().action

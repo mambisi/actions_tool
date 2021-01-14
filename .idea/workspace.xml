@@ -23,10 +23,10 @@
     <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="compression added">
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="Performance check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bintool/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="runtime-compression" />
+        <entry key="$PROJECT_DIR$" value="flate-runtime-compression" />
         <entry key="$PROJECT_DIR$/merkle-storage" value="master" />
       </map>
     </option>
@@ -75,6 +75,11 @@
     </key>
   </component>
   <component name="RunManager" selected="Cargo.Run sync (1)">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Expand io::file [bintool]" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="expand --lib --color=always --theme=GitHub --tests file" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$/io" />
@@ -159,7 +164,7 @@
       <workItem from="1610533400414" duration="8516000" />
       <workItem from="1610543322857" duration="137000" />
       <workItem from="1610543463900" duration="4837000" />
-      <workItem from="1610560722837" duration="5316000" />
+      <workItem from="1610560722837" duration="16405000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -238,7 +243,28 @@
       <option name="project" value="LOCAL" />
       <updated>1610564314139</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add snap to io">
+      <created>1610573565303</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1610573565303</updated>
+    </task>
+    <task id="LOCAL-00013" summary="replaced `reqwest` with `ureq`&#10;runtime compression with flate">
+      <created>1610586877244</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1610586877244</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Performance check">
+      <created>1610589819513</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1610589819513</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +292,9 @@
     <MESSAGE value="removed merkle&#10;add git module merkle-storage" />
     <MESSAGE value="documentation" />
     <MESSAGE value="compression added" />
-    <option name="LAST_COMMIT_MESSAGE" value="compression added" />
+    <MESSAGE value="add snap to io" />
+    <MESSAGE value="replaced `reqwest` with `ureq`&#10;runtime compression with flate" />
+    <MESSAGE value="Performance check" />
+    <option name="LAST_COMMIT_MESSAGE" value="Performance check" />
   </component>
 </project>

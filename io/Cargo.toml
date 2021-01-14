@@ -13,5 +13,6 @@ serde_json = "1.0"
 bytes = "1.0.1"
 anyhow = "1.0.38"
 snap = "1"
+flate2 = "1.0.19"
 [dev-dependencies]
 tempfile = "3.1.0"
