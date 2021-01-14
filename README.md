@@ -79,8 +79,7 @@ OPTIONS:
 ## Bintool
 This tool let you perform operations on the actions bin file, it can be used to print,
 validate and benchmark the action bin file.
-```
-Tezedge Action Bin Tool 
+```Tezedge Action Bin Tool 
 mambisi.zempare@simplestaking.com
 
 USAGE:
@@ -91,10 +90,14 @@ FLAGS:
     -V, --version    Prints version information
 
 SUBCOMMANDS:
-    benchmark    benchmarks read speed
-    help         Prints this message or the help of the given subcommand(s)
-    print        provides print option for actions file
-    validate     validates actions by storing it in tezedge merkle storage
+    benchmark     benchmarks read speed
+    compress      Compress bin file with flate2
+    help          Prints this message or the help of the given subcommand(s)
+    print         provides print option for actions file
+    uncompress    Compress bin file with flate2
+    validate      validates actions by storing it in tezedge merkle storage [https://github.com/mambisi/merkle-
+                  storage-ds]
+
 
 ```
 ### Sub Commands
@@ -146,5 +149,39 @@ FLAGS:
 OPTIONS:
     -f, --file <FILE NAME>    Action bin file
 
+
+```
+#### Compress
+```
+bintool-compress 
+Compress bin file with flate2
+
+USAGE:
+    bintool compress [OPTIONS]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+    -i, --input <FILE NAME>     input file
+    -o, --output <FILE NAME>    output file
+
+```
+#### Uncompress
+```
+bintool-uncompress 
+Uncompress bin file with flate2
+
+USAGE:
+    bintool uncompress [OPTIONS]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+    -i, --input <FILE NAME>     input file
+    -o, --output <FILE NAME>    output file
 
 ```
