@@ -6,13 +6,14 @@ use std::string::FromUtf8Error;
 use anyhow::Result;
 use anyhow::anyhow;
 use bincode::ErrorKind;
-use std::fmt::{Display, Formatter};
+use std::fmt::{ Formatter};
 use crate::channel::{Block, ContextAction};
 use flate2::read::DeflateDecoder;
 use flate2::write::DeflateEncoder;
 use flate2::Compression;
 use bytes::buf::Reader;
-
+use cluFlock::{FlockLock, ToFlock};
+use std::path::Display;
 const HEADER_LEN: usize = 12;
 
 #[derive(Clone, Copy, Debug)]
@@ -22,7 +23,7 @@ pub struct ActionsFileHeader {
     pub block_count: u32,
 }
 
-impl Display for ActionsFileHeader {
+impl std::fmt::Display for ActionsFileHeader {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut formatter: String = String::new();
         formatter.push_str(&format!("{:<24}{}\n", "Block Height:", self.block_height));
@@ -137,7 +138,7 @@ impl Iterator for ActionsFileReader {
 
         let mut reader = snap::read::FrameDecoder::new(b.reader());
 
-        let item = match bincode::deserialize_from::<_,(Block, Vec<ContextAction>)>(reader) {
+        let item = match bincode::deserialize_from::<_, (Block, Vec<ContextAction>)>(reader) {
             Ok(item) => {
                 item
             }
@@ -155,20 +156,25 @@ impl Iterator for ActionsFileReader {
 /// writes block and list actions to file in `path`
 pub struct ActionsFileWriter {
     header: ActionsFileHeader,
-    file: File,
+    file: FlockLock<File>,
 }
 
 
 impl ActionsFileWriter {
-    pub fn new<P: AsRef<Path>>(path: P) -> std::io::Result<Self> {
+    pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
         let mut file = OpenOptions::new().write(true).create(true).read(true).open(path)?;
-        let mut reader = BufReader::new(file.try_clone()?);
+        let file_lock = file.try_exclusive_lock()
+            .or_else(|e|
+                { Err(anyhow!("couldn't obtain lock")) }
+            )?;
+
+        let mut reader = BufReader::new(file_lock.try_clone()?);
         reader.seek(SeekFrom::Start(0));
         let mut h = [0_u8; HEADER_LEN];
         reader.read_exact(&mut h);
         let header = ActionsFileHeader::from(h);
         Ok(ActionsFileWriter {
-            file,
+            file: file_lock,
             header,
         })
     }

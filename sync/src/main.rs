@@ -8,8 +8,13 @@ use tracing_subscriber;
 use std::path::Path;
 
 use clap::{App, Arg};
+use std::fs::OpenOptions;
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+use cluFlock::ExclusiveFlock;
+use cluFlock::ToFlock;
+
+
+fn main() -> anyhow::Result<()> {
     env::set_var("RUST_LOG", "info");
 
     tracing_subscriber::fmt::init();
@@ -49,7 +54,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     start_syncing(node, block_limit, file_path)
 }
 
-fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> Result<(), Box<dyn std::error::Error>> {
+fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> anyhow::Result<()> {
+
     let mut writer = ActionsFileWriter::new(file_path).unwrap();
     let current_block_height = writer.header().block_height;
     let mut next_block_id = if current_block_height == 0 { 0 } else { current_block_height + 1 };
