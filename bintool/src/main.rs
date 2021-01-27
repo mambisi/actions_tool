@@ -12,13 +12,9 @@ use flate2::read::DeflateDecoder;
 use flate2::write::DeflateEncoder;
 use flate2::Compression;
 
-#[cfg(not(target_env = "msvc"))]
 use jemallocator::Jemalloc;
 use std::fs::{File, OpenOptions, read};
 
-#[cfg(not(target_env = "msvc"))]
-#[global_allocator]
-static GLOBAL: Jemalloc = Jemalloc;
 
 
 fn main() {

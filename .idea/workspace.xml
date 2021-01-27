@@ -25,8 +25,7 @@
   <component name="ChangeListManager">
     <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/src/file.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +192,8 @@
       <workItem from="1611045003610" duration="2788000" />
       <workItem from="1611134745094" duration="3759000" />
       <workItem from="1611183840055" duration="228000" />
-      <workItem from="1611784807418" duration="3088000" />
+      <workItem from="1611784807418" duration="3145000" />
+      <workItem from="1611789124647" duration="257000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -314,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611786325960</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="bug fix">
+      <created>1611788415023</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1611788415023</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
