@@ -16,5 +16,6 @@ snap = "1"
 flate2 = "1.0.19"
 cluFlock = "1.2.5"
 hex = "0.4"
+merkle = { path = "../merkle-storage/merkle" }
 [dev-dependencies]
 tempfile = "3.1.0"

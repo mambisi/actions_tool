@@ -23,15 +23,10 @@
     <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="`security` check for block sequence before adding">
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/io/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/src/channel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/channel.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/io/src/file.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/sync/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/sync/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +193,7 @@
       <workItem from="1611045003610" duration="2788000" />
       <workItem from="1611134745094" duration="3759000" />
       <workItem from="1611183840055" duration="228000" />
-      <workItem from="1611784807418" duration="1264000" />
+      <workItem from="1611784807418" duration="3088000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -312,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610633512410</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="bug fix">
+      <created>1611786325960</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1611786325960</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,6 +347,7 @@
     <MESSAGE value="Performance check" />
     <MESSAGE value="`security` added file locking for data integrity" />
     <MESSAGE value="`security` check for block sequence before adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="`security` check for block sequence before adding" />
+    <MESSAGE value="bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
   </component>
 </project>
