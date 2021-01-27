@@ -1,23 +1,54 @@
-use std::io::{BufWriter, Write, BufReader, Read, Seek, SeekFrom, Error};
-use std::fs::{File, Permissions, OpenOptions};
-use std::path::{Path};
-use bytes::{BytesMut, Buf, BufMut, Bytes};
-use std::string::FromUtf8Error;
+use std::io::{SeekFrom, BufReader, Seek, Read, Write};
+use bytes::{BytesMut, BufMut, Buf};
+use std::fmt::Formatter;
+use std::path::Path;
+use std::fs::{File, OpenOptions};
+use crate::channel::ContextAction;
 use anyhow::Result;
 use anyhow::anyhow;
-use bincode::ErrorKind;
-use std::fmt::{ Formatter};
-use crate::channel::{Block, ContextAction};
-use flate2::read::DeflateDecoder;
-use flate2::write::DeflateEncoder;
-use flate2::Compression;
-use bytes::buf::Reader;
-use cluFlock::{FlockLock, ToFlock};
-use std::path::Display;
-const HEADER_LEN: usize = 12;
+use cluFlock::{ToFlock, FlockLock};
+
+use serde::{Serialize, Deserialize};
+
+type Hash = Vec<u8>;
+
+const HEADER_LEN: usize = 44;
+const BLOCK_HASH_HEADER_LEN: usize = 32;
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct Block {
+    pub block_level: u32,
+    pub block_hash_hex: String,
+    pub block_hash: [u8; BLOCK_HASH_HEADER_LEN],
+    pub predecessor: [u8; BLOCK_HASH_HEADER_LEN],
+}
+
+impl Block {
+    pub fn new(block_level: u32, raw_block_hash: Vec<u8>, raw_predecessor: Vec<u8>) -> Self {
+        let block_hash_hex = hex::encode(&raw_block_hash);
+        let mut predecessor = [0_u8; BLOCK_HASH_HEADER_LEN];
+        copy_hash_to_slice(raw_predecessor, &mut predecessor);
+        let mut block_hash = [0_u8; BLOCK_HASH_HEADER_LEN];
+        copy_hash_to_slice(raw_block_hash, &mut block_hash);
+        Block {
+            block_level,
+            block_hash_hex,
+            predecessor,
+            block_hash,
+        }
+    }
+}
+
+fn copy_hash_to_slice(from: Vec<u8>, to: &mut [u8; BLOCK_HASH_HEADER_LEN]) {
+    let mut bytes = BytesMut::with_capacity(BLOCK_HASH_HEADER_LEN);
+    bytes.put_slice(&from);
+    bytes.reader().read_exact(to);
+}
+
 
 #[derive(Clone, Copy, Debug)]
 pub struct ActionsFileHeader {
+    pub current_block_hash: [u8; BLOCK_HASH_HEADER_LEN],
     pub block_height: u32,
     pub actions_count: u32,
     pub block_count: u32,
@@ -26,6 +57,7 @@ pub struct ActionsFileHeader {
 impl std::fmt::Display for ActionsFileHeader {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let mut formatter: String = String::new();
+        formatter.push_str(&format!("{:<24}{}", "Block Hash:", hex::encode(self.current_block_hash)));
         formatter.push_str(&format!("{:<24}{}\n", "Block Height:", self.block_height));
         formatter.push_str(&format!("{:<24}{}\n", "Block Count:", self.block_count));
         formatter.push_str(&format!("{:<24}{}", "Actions Count:", self.actions_count));
@@ -35,17 +67,20 @@ impl std::fmt::Display for ActionsFileHeader {
 
 
 impl From<[u8; HEADER_LEN]> for ActionsFileHeader {
-    fn from(v: [u8; 12]) -> Self {
+    fn from(v: [u8; HEADER_LEN]) -> Self {
         let mut bytes = BytesMut::with_capacity(v.len());
         bytes.put_slice(&v);
         let block_height = bytes.get_u32();
         let actions_count = bytes.get_u32();
         let block_count = bytes.get_u32();
+        let mut hash = [0_u8; BLOCK_HASH_HEADER_LEN];
+        bytes.reader().read_exact(&mut hash);
 
         ActionsFileHeader {
             block_height,
             actions_count,
             block_count,
+            current_block_hash: hash,
         }
     }
 }
@@ -56,6 +91,7 @@ impl ActionsFileHeader {
         bytes.put_u32(self.block_height);
         bytes.put_u32(self.actions_count);
         bytes.put_u32(self.block_count);
+        bytes.put_slice(&self.current_block_hash);
         bytes.to_vec()
     }
     fn new() -> Self {
@@ -63,19 +99,10 @@ impl ActionsFileHeader {
             block_height: 0,
             actions_count: 0,
             block_count: 0,
+            current_block_hash: [0_u8; BLOCK_HASH_HEADER_LEN],
         }
     }
 }
-
-/// # ActionFileReader
-/// Reads actions binary file in `path`
-/// ## Examples
-/// ```
-/// use io::ActionsFileReader;
-///
-/// let reader = ActionsFileReader::new("./actions.bin").unwrap();
-/// println!("{}", reader.header());
-/// ```
 
 pub struct ActionsFileReader {
     header: ActionsFileHeader,
@@ -156,25 +183,20 @@ impl Iterator for ActionsFileReader {
 /// writes block and list actions to file in `path`
 pub struct ActionsFileWriter {
     header: ActionsFileHeader,
-    file: FlockLock<File>,
+    file: File,
 }
 
 
 impl ActionsFileWriter {
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
         let mut file = OpenOptions::new().write(true).create(true).read(true).open(path)?;
-        let file_lock = file.wait_exclusive_lock()
-            .or_else(|e|
-                { Err(anyhow!("couldn't obtain lock")) }
-            )?;
-
-        let mut reader = BufReader::new(file_lock.try_clone()?);
+        let mut reader = BufReader::new(file.try_clone()?);
         reader.seek(SeekFrom::Start(0));
         let mut h = [0_u8; HEADER_LEN];
         reader.read_exact(&mut h);
         let header = ActionsFileHeader::from(h);
         Ok(ActionsFileWriter {
-            file: file_lock,
+            file,
             header,
         })
     }
@@ -194,14 +216,12 @@ impl ActionsFileWriter {
     pub fn update(&mut self, block: Block, actions: Vec<ContextAction>) -> Result<u32> {
         let block_level = block.block_level;
         let actions_count = actions.len() as u32;
-
+        let block_hash = block.block_hash;
         self._fetch_header();
 
-        if block.block_level <= self.header.block_height && self.header.block_count > 0 {
-            return Err(anyhow!("Block already stored"));
-        }
-        if block_level > 0 && self.header.block_height + 1 != block_level {
-            return Err(anyhow!("Block level is greater than N + 1, where N is the current height"));
+        // Check if currently saved block precedes the incoming block
+        if block.predecessor != self.header.current_block_hash && self.header.block_count > 0 {
+            return Err(anyhow!("Block out of sequence"));
         }
 
         let mut out = Vec::new();
@@ -215,14 +235,15 @@ impl ActionsFileWriter {
             self.file.write(&header_bytes);
         }
         self._update(&out);
-        self._update_header(block_level, actions_count);
+        self._update_header(block_level, actions_count, block_hash);
         Ok((block_level + 1))
     }
 
-    fn _update_header(&mut self, block_level: u32, actions_count: u32) {
+    fn _update_header(&mut self, block_level: u32, actions_count: u32, block_hash: [u8; BLOCK_HASH_HEADER_LEN]) {
         self.header.block_height = block_level;
         self.header.actions_count += actions_count;
         self.header.block_count += 1;
+        self.header.current_block_hash = block_hash;
 
         let header_bytes = self.header.to_vec();
         self.file.seek(SeekFrom::Start(0));

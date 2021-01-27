@@ -4,21 +4,6 @@ use std::cmp::Ordering::Equal;
 type Hash = Vec<u8>;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct Block {
-    pub block_level : u32,
-    pub block_hash : String
-}
-
-impl Block {
-    pub fn new(block_level : u32, block_hash : String) -> Self {
-        Block {
-            block_level,
-            block_hash
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ContextActionJson {
     #[serde(flatten)]
     pub action: ContextAction

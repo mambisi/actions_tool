@@ -2,7 +2,7 @@ use clap::{Arg, App};
 use io::ActionsFileReader;
 use std::time::Instant;
 use jemalloc_ctl::{stats, epoch};
-use io::channel::{Block, ContextAction};
+use io::channel::{ContextAction};
 
 use merkle::prelude::{MerkleStorageStats, MerklePerfStats, MerkleError};
 
@@ -105,7 +105,7 @@ fn main() {
         if let Some(file) = matches.value_of("block") {
             let reader = ActionsFileReader::new(file).unwrap();
             reader.for_each(|(block, _)| {
-                println!("[{:<10}] {}", block.block_level, block.block_hash)
+                println!("[{:<10}] {}", block.block_level, block.block_hash_hex)
             })
         }
 

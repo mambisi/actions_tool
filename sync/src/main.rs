@@ -1,6 +1,6 @@
-use io::channel::{ContextActionJson, Block};
+use io::channel::{ContextActionJson};
 use serde_json::Value;
-use io::{ActionsFileWriter, ActionsFileReader};
+use io::{ActionsFileWriter, ActionsFileReader, Block};
 use std::env;
 
 use tracing::{info, error, debug, warn, trace};
@@ -70,13 +70,16 @@ fn start_syncing<P: AsRef<Path>>(node: &str, limit: u32, file_path: P) -> anyhow
 
         let block = blocks.first().unwrap().as_object().unwrap();
         let block_hash = block.get("hash").unwrap().as_str();
+
         let block_header = block.get("header").unwrap().as_object().unwrap();
         let block_level = block_header.get("level").unwrap().as_u64().unwrap();
         let block_hash = block_hash.unwrap();
+        let predecessor_hash = block_header.get("predecessor").unwrap().as_str().unwrap();
         let actions_url = format!("{}/dev/chains/main/actions/blocks/{}", node, block_hash);
 
-
-        let block = Block::new(block_level as u32, block_hash.to_string());
+        let block_hash_raw = hex::decode(block_hash)?;
+        let predecessor_hash_raw = hex::decode(predecessor_hash)?;
+        let block = Block::new(block_level as u32, block_hash_raw, predecessor_hash_raw );
 
 
         let mut messages : Vec<ContextActionJson>= ureq::get(&actions_url).call()?.into_json()?;
