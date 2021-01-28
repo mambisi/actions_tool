@@ -190,7 +190,7 @@ fn validate_blocks_merkle_gc_enabled(reader: ActionsFileReader, cycle: u32) -> R
 
                     ContextAction::RemoveRecursively { key, context_hash, .. } =>
                         {
-                            storage.delete(key)
+                            storage.delete(key);
                         }
 
                     ContextAction::Commit {
