@@ -16,7 +16,6 @@ use jemallocator::Jemalloc;
 use std::fs::{File, OpenOptions, read};
 
 
-
 fn main() {
     let matches = clap::App::new("Tezedge Action Bin Tool")
         .author("mambisi.zempare@simplestaking.com")
@@ -148,7 +147,7 @@ fn main() {
         let mut input_file = OpenOptions::new().read(true).write(false).create(false).open(input_path).expect("Error opening input file");
         let mut output_file = OpenOptions::new().read(true).write(true).create(true).open(output_path).unwrap();
 
-        let mut writer = DeflateEncoder::new(output_file,Compression::best());
+        let mut writer = DeflateEncoder::new(output_file, Compression::best());
         std::io::copy(&mut input_file, &mut writer).expect("Error coping file");
         return;
     }
@@ -177,21 +176,23 @@ fn validate_blocks_merkle_gc_enabled(reader: ActionsFileReader, cycle: u32) -> R
             if msg.perform {
                 match &msg.action {
                     ContextAction::Set { key, value, context_hash, .. } =>
-                        if !ignored {
+                        {
                             storage.set(key, value);
                         }
                     ContextAction::Copy { to_key: key, from_key, context_hash, .. } =>
-                        if !ignored {
+                        {
                             storage.copy(from_key, key);
                         }
                     ContextAction::Delete { key, context_hash, .. } =>
-                        if !ignored {
+                        {
                             storage.delete(key);
                         }
+
                     ContextAction::RemoveRecursively { key, context_hash, .. } =>
-                        if !ignored {
-                            storage.delete(key);
+                        {
+                            storage.delete(key)
                         }
+
                     ContextAction::Commit {
                         parent_context_hash, new_context_hash, block_hash: Some(block_hash),
                         author, message, date, ..
@@ -216,7 +217,6 @@ fn validate_blocks_merkle_gc_enabled(reader: ActionsFileReader, cycle: u32) -> R
                     _ => (),
                 };
             }
-
         }
         if block_level != 0 && block_level % cycle == 0 {
             storage.gc();
