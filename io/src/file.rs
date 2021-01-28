@@ -3,7 +3,7 @@ use bytes::{BytesMut, BufMut, Buf};
 use std::fmt::Formatter;
 use std::path::Path;
 use std::fs::{File, OpenOptions};
-use crate::channel::ContextAction;
+use crate::channel::{ContextAction, ContextActionMessage};
 use anyhow::Result;
 use anyhow::anyhow;
 use cluFlock::{ToFlock, FlockLock};
@@ -142,7 +142,7 @@ impl ActionsFileReader {
 }
 
 impl Iterator for ActionsFileReader {
-    type Item = (Block, Vec<ContextAction>);
+    type Item = (Block, Vec<ContextActionMessage>);
 
     /// Return a tuple of a block and list action in the block
     fn next(&mut self) -> Option<Self::Item> {
@@ -164,11 +164,9 @@ impl Iterator for ActionsFileReader {
         unsafe { b.set_len(content_len as usize) }
         self.reader.read_exact(&mut b);
 
-        println!("{:?}",&b);
-
         let mut reader = snap::read::FrameDecoder::new(b.reader());
 
-        let item = match bincode::deserialize_from::<_, (Block, Vec<ContextAction>)>(reader) {
+        let item = match bincode::deserialize_from::<_, (Block, Vec<ContextActionMessage>)>(reader) {
             Ok(item) => {
                 item
             }
@@ -216,7 +214,7 @@ unsafe impl Sync for ActionsFileWriter {}
 
 
 impl ActionsFileWriter {
-    pub fn update(&mut self, block: Block, actions: Vec<ContextAction>) -> Result<u32> {
+    pub fn update(&mut self, block: Block, actions: Vec<ContextActionMessage>) -> Result<u32> {
         let block_level = block.block_level;
         let actions_count = actions.len() as u32;
         let block_hash = block.block_hash;
@@ -270,7 +268,7 @@ impl ActionsFileWriter {
     }
 }
 
-/*
+
 #[cfg(test)]
 mod tests {
     use crate::ActionsFileReader;
@@ -278,10 +276,9 @@ mod tests {
     #[test]
     fn test_read() {
         let reader = ActionsFileReader::new("/Users/mambisiz/CLionProjects/actions_tool/actions.bin").unwrap();
-        for (b,_) in reader {
+        for (b,_msgs) in reader {
             println!("{}", b.block_hash_hex);
             break
         }
     }
 }
-*/

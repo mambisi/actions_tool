@@ -173,47 +173,50 @@ fn validate_blocks_merkle_gc_enabled(reader: ActionsFileReader, cycle: u32) -> R
     let mut storage = MerkleStorage::new(db.clone());
     reader.for_each(|(block, actions)| {
         let block_level = block.block_level;
-        for action in &actions {
-            match action {
-                ContextAction::Set { key, value, context_hash, ignored, .. } =>
-                    if !ignored {
-                        storage.set(key, value);
+        for msg in &actions {
+            if msg.perform {
+                match &msg.action {
+                    ContextAction::Set { key, value, context_hash, .. } =>
+                        if !ignored {
+                            storage.set(key, value);
+                        }
+                    ContextAction::Copy { to_key: key, from_key, context_hash, .. } =>
+                        if !ignored {
+                            storage.copy(from_key, key);
+                        }
+                    ContextAction::Delete { key, context_hash, .. } =>
+                        if !ignored {
+                            storage.delete(key);
+                        }
+                    ContextAction::RemoveRecursively { key, context_hash, .. } =>
+                        if !ignored {
+                            storage.delete(key);
+                        }
+                    ContextAction::Commit {
+                        parent_context_hash, new_context_hash, block_hash: Some(block_hash),
+                        author, message, date, ..
+                    } => {
+                        let date = *date as u64;
+                        let hash = storage.commit(date, author.to_owned(), message.to_owned()).unwrap();
+                        let commit_hash = hash[..].to_vec();
+                        assert_eq!(
+                            &commit_hash,
+                            new_context_hash,
+                            "Invalid context_hash for block: {}, expected: {}, but was: {}",
+                            HashType::BlockHash.hash_to_b58check(block_hash),
+                            HashType::ContextHash.hash_to_b58check(new_context_hash),
+                            HashType::ContextHash.hash_to_b58check(&hash),
+                        );
                     }
-                ContextAction::Copy { to_key: key, from_key, context_hash, ignored, .. } =>
-                    if !ignored {
-                        storage.copy(from_key, key);
-                    }
-                ContextAction::Delete { key, context_hash, ignored, .. } =>
-                    if !ignored {
-                        storage.delete(key);
-                    }
-                ContextAction::RemoveRecursively { key, context_hash, ignored, .. } =>
-                    if !ignored {
-                        storage.delete(key);
-                    }
-                ContextAction::Commit {
-                    parent_context_hash, new_context_hash, block_hash: Some(block_hash),
-                    author, message, date, ..
-                } => {
-                    let date = *date as u64;
-                    let hash = storage.commit(date, author.to_owned(), message.to_owned()).unwrap();
-                    let commit_hash = hash[..].to_vec();
-                    assert_eq!(
-                        &commit_hash,
-                        new_context_hash,
-                        "Invalid context_hash for block: {}, expected: {}, but was: {}",
-                        HashType::BlockHash.hash_to_b58check(block_hash),
-                        HashType::ContextHash.hash_to_b58check(new_context_hash),
-                        HashType::ContextHash.hash_to_b58check(&hash),
-                    );
-                }
 
-                ContextAction::Checkout { context_hash, .. } => {
-                    let context_hash_arr: EntryHash = context_hash.as_slice().try_into().unwrap();
-                    storage.checkout(&context_hash_arr);
-                }
-                _ => (),
-            };
+                    ContextAction::Checkout { context_hash, .. } => {
+                        let context_hash_arr: EntryHash = context_hash.as_slice().try_into().unwrap();
+                        storage.checkout(&context_hash_arr);
+                    }
+                    _ => (),
+                };
+            }
+
         }
         if block_level != 0 && block_level % cycle == 0 {
             storage.gc();

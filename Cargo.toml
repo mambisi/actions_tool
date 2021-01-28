@@ -1,3 +1,3 @@
 [workspace]
-members = ["io", "sync", "bintool"]
+members = ["io", "bintool"]
 exclude = [ "./merkle-storage" ]
