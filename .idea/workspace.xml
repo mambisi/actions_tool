@@ -25,7 +25,9 @@
   <component name="ChangeListManager">
     <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/io/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/src/channel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/channel.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/io/src/file.rs" beforeDir="false" afterPath="$PROJECT_DIR$/io/src/file.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +74,7 @@
       <recent name="$PROJECT_DIR$/io/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Cargo.Run">
+  <component name="RunManager" selected="Cargo.Test file::tests::test_read">
     <configuration name="Remote Debug" type="CLion_Remote" version="1" remoteCommand="tcp:88.80.186.120:2002" symbolFile="" sysroot="">
       <debugger kind="GDB" isBundled="true" />
       <pathMapping remote=":/repo/actions_tool" local="$PROJECT_DIR$" />
@@ -148,21 +150,36 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test file::tests::test_read" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package io --lib file::tests::test_read -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/bintool" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Cargo.Run" />
       <item itemvalue="Cargo.Expand io::file [bintool]" />
       <item itemvalue="Cargo.Run sync" />
       <item itemvalue="Cargo.Run sync (1)" />
       <item itemvalue="Cargo.Test file::test_data_header" />
+      <item itemvalue="Cargo.Test file::tests::test_read" />
       <item itemvalue="GDB Remote Debug.Remote Debug" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo.Test file::tests::test_read" />
         <item itemvalue="Cargo.Run sync (1)" />
         <item itemvalue="Cargo.Run sync" />
         <item itemvalue="Cargo.Expand io::file [bintool]" />
         <item itemvalue="Cargo.Test file::test_data_header" />
-        <item itemvalue="Cargo.Run sync (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +210,9 @@
       <workItem from="1611134745094" duration="3759000" />
       <workItem from="1611183840055" duration="228000" />
       <workItem from="1611784807418" duration="3145000" />
-      <workItem from="1611789124647" duration="257000" />
+      <workItem from="1611789124647" duration="1126000" />
+      <workItem from="1611791179665" duration="2350000" />
+      <workItem from="1611813728146" duration="61000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -321,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611788415023</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="bug fix">
+      <created>1611789488209</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1611789488209</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,5 +382,21 @@
     <MESSAGE value="`security` check for block sequence before adding" />
     <MESSAGE value="bug fix" />
     <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/io/src/file.rs</url>
+          <line>168</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/io/src/file.rs</url>
+          <line>170</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

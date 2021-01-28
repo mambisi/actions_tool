@@ -164,6 +164,8 @@ impl Iterator for ActionsFileReader {
         unsafe { b.set_len(content_len as usize) }
         self.reader.read_exact(&mut b);
 
+        println!("{:?}",&b);
+
         let mut reader = snap::read::FrameDecoder::new(b.reader());
 
         let item = match bincode::deserialize_from::<_, (Block, Vec<ContextAction>)>(reader) {
@@ -267,3 +269,19 @@ impl ActionsFileWriter {
         self.file.write(dt.as_slice());
     }
 }
+
+/*
+#[cfg(test)]
+mod tests {
+    use crate::ActionsFileReader;
+
+    #[test]
+    fn test_read() {
+        let reader = ActionsFileReader::new("/Users/mambisiz/CLionProjects/actions_tool/actions.bin").unwrap();
+        for (b,_) in reader {
+            println!("{}", b.block_hash_hex);
+            break
+        }
+    }
+}
+*/
