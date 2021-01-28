@@ -23,7 +23,9 @@
     <cargoProject FILE="$PROJECT_DIR$/bintool/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="new context update" />
+    <list default="true" id="285fb979-be35-4b09-8ed3-84056cc08dc4" name="Default Changelist" comment="big fix">
+      <change beforePath="$PROJECT_DIR$/bintool/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/bintool/src/main.rs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,6 +216,7 @@
       <workItem from="1611813728146" duration="1157000" />
       <workItem from="1611817418334" duration="1963000" />
       <workItem from="1611821607804" duration="371000" />
+      <workItem from="1611830622780" duration="237000" />
     </task>
     <task id="LOCAL-00001" summary="Testing completed">
       <created>1610480540728</created>
@@ -369,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611822341236</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="big fix">
+      <created>1611830717025</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1611830717025</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,6 +415,7 @@
     <MESSAGE value="bug fix" />
     <MESSAGE value="merkle hash update" />
     <MESSAGE value="new context update" />
-    <option name="LAST_COMMIT_MESSAGE" value="new context update" />
+    <MESSAGE value="big fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="big fix" />
   </component>
 </project>

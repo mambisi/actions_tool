@@ -4,7 +4,7 @@ use std::time::Instant;
 use jemalloc_ctl::{stats, epoch};
 use io::channel::{ContextAction};
 
-use merkle::prelude::{MerkleStorageStats, MerklePerfStats, MerkleError};
+use merkle::prelude::{MerkleStorageStats, MerklePerfStats, MerkleError, HashType};
 
 use std::sync::{RwLock, Arc};
 use std::convert::TryInto;
@@ -100,7 +100,7 @@ fn main() {
         if let Some(file) = matches.value_of("block") {
             let reader = ActionsFileReader::new(file).unwrap();
             reader.for_each(|(block, _)| {
-                println!("[{:<10}] {}", block.block_level, block.block_hash_hex)
+                println!("[{:<10}] {}", block.block_level, HashType::BlockHash.hash_to_b58check(&block.block_hash))
             })
         }
 
